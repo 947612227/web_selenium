@@ -20,6 +20,7 @@ class BossZhiPin(unittest.TestCase):
     def setUp(self):
         url = "https://www.zhipin.com/"
         self.driver = driverInit().driver_init(url,1)
+        self.log = logs()
         time.sleep(3)
 
     def tearDown(self):

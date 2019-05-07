@@ -25,12 +25,6 @@ class baiDuTieBa(unittest.TestCase):
         url = "http://www.baidu.com"
         self.driver = driverInit().driver_init(url,1)
         self.log = logs()
-        # sysInfo = driverInit.get_sys_info()
-
-        # try:
-        #     assert "百度一下，你就知道" in self.driver.title
-        # except Exception as e:
-        #     print(e.message)
 
     def tearDown(self):
         self.log.info("++++++执行完成，安全退出线程++++++")
@@ -119,24 +113,22 @@ class baiDuTieBa(unittest.TestCase):
 
 
         #定位一键签到按钮xpath
-        oneKeyBtn = fd.findElementFun("xpath","//*[@id='onekey_sign']/a")
+        oneKeyBtn = fd.findElementFun("xpath","//*[@class='onekey_btn']")
         oneKeyBtn.click()
-        time.sleep(1)
-        self.log.info("点击完成")
+        time.sleep(2)
+        self.log.info("点击一键签到")
 
-        startBtn = fd.findElementFun("xpath","//*[@id='dialogJbody']/div/div/div[1]/a")
-        startBtn.click()
-        time.sleep(3)
-        self.log.info("")
+
+
+        # startBtn = fd.findElementFun("xpath","//*[@id='dialogJbody']/div/div/div[1]/a")
+        # startBtn.click()
+        # time.sleep(3)
+        # self.log.info("点击签到完成")
 #验证是否签到成功
-        # try:
-        #     fd.waits_unit(self.driver,5,"xpath","//*[@id='dialogJbody']/div/div/div[1]/span")
-        #             except Exception as e:
-        #     raise e
-
-
-
-#//*[@id="dialogJbody"]/div/div/div[1]/p
-##//*[@id="dialogJbody"]/div/div/div[1]/span
-#if __name__ == '__main__':
-#    unittest.main()
+        try:
+            check_out = fd.findElementFun("xpath","//*[@class='sign_btn sign_suc_nonmember']")
+        except Exception as e:
+            print("签到失败%s" % e)
+        else:
+            self.log.info("签到完成")
+            print("签到完成")

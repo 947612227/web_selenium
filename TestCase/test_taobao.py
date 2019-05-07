@@ -14,21 +14,19 @@ from selenium.webdriver.support.wait import WebDriverWait #显示等待
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import *
+from Init.loginit import logs
+
 
 class testTaoBao(unittest.TestCase):
     """淘宝首页"""
     def setUp(self):
-        sysInfo = driverInit.get_sys_info()
         url = "http://www.taobao.com"
         #调用了/Init/webdriverInit.py初始化webdriver
         self.driver = driverInit.driver_init(1,url)
-        self.driver.maximize_window()
-#        try:
-#            assert "百度一下，你就知道" in self.driver.title
-#        except Exception as e:
-#            print(e.message)
+        self.log = logs()
 
     def tearDown(self):
+        self.log.info("执行完成，退出--淘宝")
         self.driver.quit()
 
     def test_tb(self):
@@ -38,20 +36,26 @@ class testTaoBao(unittest.TestCase):
 
     #点击首页导航登陆按钮
         fd.findElementFun("xpath","//*[@id='J_SiteNavLogin']/div[1]/div[1]/a[1]").click()
+        self.log.info("点击首页导航登陆按钮")
         time.sleep(2)
 
     #点击登陆界面的密码登陆
         fd.findElementFun("xpath","//*[@id='J_QRCodeLogin']/div[5]/a[1]").click()
+        self.log.info("点击使用账号密码登陆")
         time.sleep(2)
 
     #定位用户名输入框
-        phone = ""
-        password = ""
+        phone = "12345678910"
+        password = "123456789"
         username = fd.findElementFun("xpath","//*[@id='TPL_username_1']")
+
+        self.log.info("定位用户名输入框")
         user_str = list(phone)
         for i in user_str:
             username.send_keys(i)
             time.sleep(0.2)
+        utext = username.get_attribute('value')
+        self.log.info("输入的用户名为：%s" %(utext))
         time.sleep(1)
 
     #插入JS，跳过滑动验证码
@@ -64,9 +68,6 @@ class testTaoBao(unittest.TestCase):
             time.sleep(0.2)
 
         time.sleep(1)
-
-
-
 
     #点击登陆按钮
         login_btn = fd.findElementFun("xpath","//*[@id='J_SubmitStatic']")

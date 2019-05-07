@@ -48,6 +48,7 @@ class driverInit():
                 return init
             else:
                 print("driver初始化参数错误")
+                self.log.info("driver初始化参数错误")
 
         except Exception as e:
             print(e)
