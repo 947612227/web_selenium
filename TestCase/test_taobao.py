@@ -22,7 +22,7 @@ class testTaoBao(unittest.TestCase):
     def setUp(self):
         url = "http://www.taobao.com"
         #调用了/Init/webdriverInit.py初始化webdriver
-        self.driver = driverInit.driver_init(1,url)
+        self.driver = driverInit().driver_init(url,1)
         self.log = logs()
 
     def tearDown(self):
@@ -32,7 +32,7 @@ class testTaoBao(unittest.TestCase):
     def test_tb(self):
         fd = FindEleClass(self.driver)
     #验证首页是否打开
-        fd.waits_unit(driver,3,"xpath","/html/body/div[2]/div/div/div[1]/div/h1/a")
+        fd.waits_unit(self.driver,3,"xpath","/html/body/div[2]/div/div/div[1]/div/h1/a")
 
     #点击首页导航登陆按钮
         fd.findElementFun("xpath","//*[@id='J_SiteNavLogin']/div[1]/div[1]/a[1]").click()

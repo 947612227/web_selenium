@@ -14,6 +14,7 @@ import unittest
 from selenium import webdriver
 from PublicClass.FindElements import FindEleClass
 from Init.webdriverInit import driverInit
+from Init.loginit import logs
 
 class BossZhiPin(unittest.TestCase):
     """Boss直聘"""
@@ -104,18 +105,6 @@ class BossZhiPin(unittest.TestCase):
         time.sleep(1)
 
         #元素定位暂时就写那么多
-
-
-
-
-
-
-
-
-
-
-
-
     def test_error1(self):
         """这是一个错误，以防全部通过没绩效"""
         print(1/0)

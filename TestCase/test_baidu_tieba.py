@@ -65,6 +65,7 @@ class baiDuTieBa(unittest.TestCase):
 
         #点击登陆
         login_btn = fd.findElementFun("xpath","//*[@id='com_userbar']/ul/li[4]/div/a")
+        time.sleep(3)
         login_btn.click()
         time.sleep(1)
         self.log.info("点击登陆按钮完成")
