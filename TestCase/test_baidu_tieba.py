@@ -21,15 +21,10 @@ from Init.loginit import logs
 
 class baiDuTieBa(unittest.TestCase):
     """百度贴吧测试用例CLASS"""
-    def __init__(self,methodName='test_baiDuTieba'):
-        super(baiDuTieBa,self).__init__(methodName)
-        #调用了/Init/webdriverInit.py初始化webdriver
-        url = "http://www.baidu.com"
-        self.driver = driverInit.driver_init(url,1)
-        self.log = logs()
-
     def setUp(self):
-        print("setup")
+        url = "http://www.baidu.com"
+        self.driver = driverInit().driver_init(url,1)
+        self.log = logs()
         # sysInfo = driverInit.get_sys_info()
 
         # try:
@@ -38,14 +33,15 @@ class baiDuTieBa(unittest.TestCase):
         #     print(e.message)
 
     def tearDown(self):
+        self.log.info("++++++执行完成，安全退出线程++++++")
         self.driver.quit()
 
     def test_baiDuTieba(self):
         """贴吧登陆自动化用例"""
         # self.log = logs()
         self.log.info("++++++处理贴吧登陆用例开始++++++")
-        uname = ""
-        upass = ""
+        uname = "candy霞姐"
+        upass = "yixia1112"
         fd = FindEleClass(self.driver)
         self.log.info("初始化find_element函数")
         #搜索百度贴吧
@@ -77,40 +73,50 @@ class baiDuTieBa(unittest.TestCase):
         login_btn = fd.findElementFun("xpath","//*[@id='com_userbar']/ul/li[4]/div/a")
         login_btn.click()
         time.sleep(1)
-
+        self.log.info("点击登陆按钮完成")
 
 #点击用户名登陆方式
         user_login = fd.findElementFun("id","TANGRAM__PSP_10__footerULoginBtn")
         user_login.click()
         time.sleep(1)
+        self.log.info("点击用户名登陆方式")
 
         #定位用户名输入框
         user_input = fd.findElementFun("id","TANGRAM__PSP_10__userName")
         user_input.click()
         user_input.clear()
+        self.log.info("用户名输入框定位完成")
 
         username = list(uname)
         for j in username:
             user_input.send_keys(j)
             time.sleep(0.2)
         time.sleep(1)
+        self.log.info("用户名输入完成")
+        utext = user_input.get_attribute('value')
+        self.log.info("输入的用户名为:%s" %(utext))
 
         #定位密码输入框
         passwd_input = fd.findElementFun("id","TANGRAM__PSP_10__password")
         passwd_input.click()
         passwd_input.clear()
+        self.log.info("密码输入框定位完成")
 
         passwd = list(upass)
         for a in passwd:
             passwd_input.send_keys(a)
             time.sleep(0.2)
         time.sleep(1)
+        self.log.info("密码输入完成")
+        ptext = passwd_input.get_attribute('value')
+        self.log.info("输入的密码为:%s" %(ptext))
 
         #定位登陆按钮
         login_btn1 = fd.findElementFun("id","TANGRAM__PSP_10__submit")
         login_btn1.click()
         time.sleep(3)
-        self.log.info("登陆完成")
+        self.log.info("点击登陆按钮，登陆完成")
+
 
         #定位一键签到按钮xpath
         oneKeyBtn = fd.findElementFun("xpath","//*[@id='onekey_sign']/a")
@@ -121,7 +127,7 @@ class baiDuTieBa(unittest.TestCase):
         startBtn = fd.findElementFun("xpath","//*[@id='dialogJbody']/div/div/div[1]/a")
         startBtn.click()
         time.sleep(3)
-        self.log.info("++++++执行完成，安全退出线程++++++")
+        self.log.info("")
 #验证是否签到成功
         # try:
         #     fd.waits_unit(self.driver,5,"xpath","//*[@id='dialogJbody']/div/div/div[1]/span")
