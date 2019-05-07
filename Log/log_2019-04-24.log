@@ -1,8 +1,0 @@
-[2019-04-24 22:19:50,863 loginit.py info line:41 INFO:] [谷歌浏览器初始化完成:<selenium.webdriver.chrome.webdriver.WebDriver (session="25e354848862cfcb4a7ad31e41cc810b")>]
-[2019-04-24 22:19:51,823 loginit.py info line:41 INFO:] [测试URL：http://www.baidu.com]
-[2019-04-24 22:19:52,948 loginit.py info line:41 INFO:] [设置窗口最大化]
-[2019-04-24 22:19:55,948 loginit.py info line:41 INFO:] [testloginBaiDu方法开始]
-[2019-04-24 22:19:55,951 loginit.py info line:41 INFO:] [初始化定位函数]
-[2019-04-24 22:19:55,980 loginit.py info line:41 INFO:] [发现元素：kw]
-[2019-04-24 22:19:56,150 loginit.py info line:41 INFO:] [输入内容：123456789]
-[2019-04-24 22:20:00,151 loginit.py info line:41 INFO:] [执行完成，退出线程]
